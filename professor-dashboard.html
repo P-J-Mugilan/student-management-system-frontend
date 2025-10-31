@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professor Dashboard - Student Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dashboard-page">
+    <!-- =========================
+         DASHBOARD LAYOUT START
+    ========================== -->
+    <div class="dashboard-container">
+
+        <!-- ===== Sidebar Navigation ===== -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Professor Panel</h2>
+            </div>
+
+            <!-- Sidebar Buttons -->
+            <nav class="sidebar-nav">
+                <!-- Default active section -->
+                <button class="nav-item active" data-section="students">Manage Students</button>
+                <!-- Logout Button -->
+                <button class="nav-item" id="logoutBtn">Logout</button>
+            </nav>
+        </aside>
+
+        <!-- ===== Main Dashboard Area ===== -->
+        <main class="dashboard-main">
+
+            <!-- Dashboard Header -->
+            <header class="dashboard-header">
+                <h1 id="welcomeMessage">Welcome, Professor</h1>
+                <!-- Branch Info (loaded dynamically via JS) -->
+                <p id="professorBranchInfo">Branch: Loading...</p>
+
+                <!-- Refresh Button -->
+                <div class="header-actions">
+                    <button id="refreshBtn" class="btn btn-secondary">Refresh</button>
+                </div>
+            </header>
+
+            <!-- Toast Notification Container -->
+            <div id="toastContainer" class="toast-container"></div>
+
+            <!-- Loading Spinner (visible during data loading) -->
+            <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                <div class="spinner"></div>
+                <p>Loading...</p>
+            </div>
+
+            <!-- =========================
+                 MAIN CONTENT SECTIONS
+            ========================== -->
+            <div class="dashboard-content">
+
+                <!-- ==== Students Section ==== -->
+                <section id="studentsSection" class="content-section active">
+                    
+                    <!-- Section Header -->
+                    <div class="section-header">
+                        <h2>Manage Students</h2>
+                        <button id="addStudentBtn" class="btn btn-primary">Add New Student</button>
+                    </div>
+                    
+                    <!-- Student Form (Hidden by default) -->
+                    <div id="studentFormContainer" class="form-container" style="display: none;">
+                        <h3 id="studentFormTitle">Add New Student</h3>
+                        
+                        <form id="studentForm" class="form">
+                            <!-- Hidden ID field (used for editing existing students) -->
+                            <input type="hidden" id="studentId">
+
+                            <!-- Row 1: Name and Email -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="studentName">Full Name</label>
+                                    <input type="text" id="studentName" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="studentEmail">Email</label>
+                                    <input type="email" id="studentEmail" name="email" required>
+                                </div>
+                            </div>
+
+                            <!-- Row 2: Age and Gender -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="studentAge">Age</label>
+                                    <input type="number" id="studentAge" name="age" min="16" max="100" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="studentGender">Gender</label>
+                                    <select id="studentGender" name="gender" required>
+                                        <option value="">Select Gender</option>
+                                        <option value="MALE">Male</option>
+                                        <option value="FEMALE">Female</option>
+                                        <option value="OTHER">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Form Buttons -->
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Save Student</button>
+                                <button type="button" id="cancelStudentBtn" class="btn btn-secondary">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- =========================
+                         Students Table
+                    ========================== -->
+                    <div class="table-container">
+
+                        <!-- Table Header -->
+                        <div class="table-header">
+                            <h3>Students List</h3>
+                            <div class="table-actions">
+                                <input type="text" id="studentSearch" placeholder="Search students..." class="search-input">
+                            </div>
+                        </div>
+                        
+                        <!-- Table -->
+                        <div class="table-responsive">
+                            <table class="data-table" id="studentsTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Age</th>
+                                        <th>Gender</th>
+                                        <th>Branch</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="studentsTableBody">
+                                    <!-- Student rows will be added here via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Empty State (when no students are available) -->
+                        <div id="studentsEmptyState" class="empty-state" style="display: none;">
+                            <div class="empty-state-icon">📚</div>
+                            <h3>No Students Found</h3>
+                            <p>There are no students in your branch yet.</p>
+                            <button id="addFirstStudent" class="btn btn-primary">Add First Student</button>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="pagination" id="studentsPagination">
+                            <button id="prevStudentsPage" class="pagination-btn" disabled>Previous</button>
+                            <span id="studentsPageInfo" class="pagination-info">Page 1 of 1</span>
+                            <button id="nextStudentsPage" class="pagination-btn" disabled>Next</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- =========================
+         CONFIRMATION MODAL
+    ========================== -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Confirm Action</h3>
+            </div>
+            <p id="modalMessage">Are you sure you want to perform this action?</p>
+            <div class="modal-actions">
+                <button id="confirmAction" class="btn btn-danger">Confirm</button>
+                <button id="cancelAction" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================
+         JAVASCRIPT FILES
+    ========================== -->
+    <script src="js/api.js"></script>
+    <script src="js/professor-dashboard.js"></script>
+</body>
+</html>

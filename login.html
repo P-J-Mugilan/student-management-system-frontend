@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Student Management System</title>
+
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="login-page">
+
+    <!-- ===============================
+         HEADER SECTION
+         =============================== -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Student Management System</h1>
+
+            <!-- Navigation Links -->
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="login.html" class="nav-link active">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===============================
+         MAIN CONTENT SECTION
+         =============================== -->
+    <main class="main">
+        <div class="container">
+
+            <!-- Login Box -->
+            <div class="login-container">
+                <div class="login-card">
+                    <h2>Login to Your Account</h2>
+                    <p class="subtitle">Enter your credentials to access the system</p>
+
+                    <!-- ===============================
+                         LOGIN FORM
+                         =============================== -->
+                    <form id="loginForm" class="login-form">
+
+                        <!-- Username Field -->
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input 
+                                type="text" 
+                                id="username" 
+                                name="username" 
+                                placeholder="Enter your username" 
+                                required 
+                                autocomplete="username">
+                        </div>
+
+                        <!-- Password Field with Show/Hide Option -->
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <div class="password-input">
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password" 
+                                    placeholder="Enter your password" 
+                                    required 
+                                    autocomplete="current-password">
+
+                                <!-- Button to toggle password visibility -->
+                                <button 
+                                    type="button" 
+                                    class="password-toggle" 
+                                    id="passwordToggle" 
+                                    aria-label="Toggle password visibility">
+
+                                    <!-- Eye Icon -->
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Login Button with Loading Spinner -->
+                        <button type="submit" class="btn btn-primary btn-full" id="loginBtn">
+                            <span id="loginText">Login</span>
+                            <div class="spinner" id="loginSpinner" style="display: none;"></div>
+                        </button>
+                    </form>
+
+                    <!-- Error Message Display (Hidden by default) -->
+                    <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+                    <!-- Help Text -->
+                    <div class="help-text">
+                        <p>Contact your administrator if you need login credentials.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ===============================
+         FOOTER SECTION
+         =============================== -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Student Management System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ===============================
+         JAVASCRIPT FILES
+         =============================== -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

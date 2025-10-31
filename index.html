@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- ===============================
+         HEADER SECTION
+         =============================== -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Student Management System</h1>
+
+            <!-- Navigation Menu -->
+            <nav class="nav">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="login.html" class="nav-link">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===============================
+         MAIN CONTENT SECTION
+         =============================== -->
+    <main class="main">
+        <div class="container">
+
+            <!-- Search Area -->
+            <div class="search-section">
+                <h2>Find Student Information</h2>
+                <p class="subtitle">Enter student email to view their details</p>
+
+                <!-- Search Form -->
+                <form id="searchForm" class="search-form">
+                    <div class="form-group">
+                        <div class="input-with-icon">
+                            <!-- Input field for student email -->
+                            <input type="email" id="email" name="email" placeholder="Enter student email" required>
+
+                            <!-- Search Button -->
+                            <button type="submit" class="search-btn">
+                                <!-- Simple search icon using SVG -->
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <path d="m21 21-4.3-4.3"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Loading Spinner (Hidden by default) -->
+                <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Searching for student...</p>
+                </div>
+
+                <!-- Results Section (Hidden initially) -->
+                <div id="resultsSection" class="results-section" style="display: none;">
+                    <h3>Student Details</h3>
+                    <div id="studentDetails" class="student-details">
+                        <!-- Student details will be inserted here by JS -->
+                    </div>
+                </div>
+
+                <!-- Error Message (Hidden initially) -->
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===============================
+         FOOTER SECTION
+         =============================== -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Student Management System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ===============================
+         JAVASCRIPT FILES
+         =============================== -->
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
