@@ -10,7 +10,7 @@ Full Stack Developer
 📧 pjmugilan@gmail.com  
 📞 +91 7671085496  
 
-**Portfolio:** https://pjmugilan.netlify.app/  
+**Portfolio:** https://pjmugilan.onrender.com  
 **LinkedIn:** https://www.linkedin.com/in/mugilanjagadeesan/  
 **GitHub:** https://github.com/P-J-Mugilan/
 
